@@ -1,21 +1,22 @@
 "use strict";
 console.log("Hello TypeScript");
 class Person {
-    constructor(name, surname, age) {
+    constructor(name, age) {
         this.name = name;
-        this.surname = surname;
         this.age = age;
     }
-    info() {
-        return "Hello";
-    }
 }
+// const person1 = new Person("Valisher",25)  // => Abstact classlardan obekt yaratilmaydi. Ular faqat voris olish uchun
 class Teacher extends Person {
-    constructor(name, surname, age, group) {
-        super(name, surname, age);
-        this.group = group;
+    constructor(name, age, position) {
+        super(name, age);
+        this.position = position;
+    }
+    fetchAge() {
+        return `${this.name} is ${this.age} years old`;
     }
 }
-const person1 = new Person("Valisher", "Botirov", 22);
-console.log(person1);
+const teacher1 = new Teacher("Jon", 20, "Math");
+console.log(teacher1);
+console.log(teacher1.fetchAge());
 //# sourceMappingURL=index.js.map

@@ -237,43 +237,81 @@ console.log("Hello TypeScript")
 // console.log(teacher1.teacherInfo())
 
 // Interface and types  =============================================================
- interface IPerson{
+//  interface IPerson{
+//     name:string;
+//     surname:string;
+//  }
+//
+//  interface IPerson{
+//      age?:number;
+//      info?():string
+//  }
+//
+//  interface ITeacher extends IPerson{
+//     group:string
+//  }
+//
+//  class Person implements IPerson{
+//      name:string
+//      surname:string
+//      age:number
+//      constructor(name:string,surname:string,age:number) {
+//          this.name = name
+//          this.surname = surname
+//          this.age = age
+//      }
+//
+//      info(): string {
+//         return "Hello"
+//      }
+//  }
+//
+//  class Teacher extends Person implements ITeacher{
+//     group:string
+//      constructor(name:string,surname:string, age:number,group:string) {
+//          super(name,surname,age);
+//          this.group = group
+//      }
+//  }
+//
+//  const person1 = new Person("Valisher","Botirov",22)
+// console.log(person1)
+
+// Abstract class ===============================================================
+interface IPerson{
     name:string;
-    surname:string;
- }
+    age:number
+}
 
- interface IPerson{
-     age?:number;
-     info?():string
- }
+interface ITeacher extends IPerson{
+    position:string
+}
+abstract class Person implements IPerson{
+    name:string;
+    age:number
+    constructor(name:string,age:number) {
+        this.name = name
+        this.age = age
+    }
 
- interface ITeacher extends IPerson{
-    group:string
- }
+    abstract fetchAge():string
+}
 
- class Person implements IPerson{
-     name:string
-     surname:string
-     age:number
-     constructor(name:string,surname:string,age:number) {
-         this.name = name
-         this.surname = surname
-         this.age = age
-     }
+// const person1 = new Person("Valisher",25)  // => Abstact classlardan obekt yaratilmaydi. Ular faqat voris olish uchun
 
-     info(): string {
-        return "Hello"
-     }
- }
 
- class Teacher extends Person implements ITeacher{
-    group:string
-     constructor(name:string,surname:string, age:number,group:string) {
-         super(name,surname,age);
-         this.group = group
-     }
- }
+class Teacher extends Person implements ITeacher{
+    position:string
+    constructor(name:string,age:number,position:string) {
+        super(name,age);
+        this.position = position
+    }
 
- const person1 = new Person("Valisher","Botirov",22)
-console.log(person1)
+    fetchAge(): string {
+        return `${this.name} is ${this.age} years old`;
+    }
+}
 
+const teacher1 = new Teacher("Jon",20,"Math")
+console.log(teacher1)
+console.log(teacher1.fetchAge())
