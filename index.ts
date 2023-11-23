@@ -278,40 +278,103 @@ console.log("Hello TypeScript")
 // console.log(person1)
 
 // Abstract class ===============================================================
-interface IPerson{
-    name:string;
-    age:number
-}
-
-interface ITeacher extends IPerson{
-    position:string
-}
-abstract class Person implements IPerson{
-    name:string;
-    age:number
-    constructor(name:string,age:number) {
-        this.name = name
-        this.age = age
-    }
-
-    abstract fetchAge():string
-}
+// interface IPerson{
+//     name:string;
+//     age:number
+// }
+//
+// interface ITeacher extends IPerson{
+//     position:string
+// }
+// abstract class Person implements IPerson{
+//     name:string;
+//     age:number
+//     constructor(name:string,age:number) {
+//         this.name = name
+//         this.age = age
+//     }
+//
+//     abstract fetchAge():string
+// }
 
 // const person1 = new Person("Valisher",25)  // => Abstact classlardan obekt yaratilmaydi. Ular faqat voris olish uchun
 
+// class Teacher extends Person implements ITeacher{
+//     position:string
+//     constructor(name:string,age:number,position:string) {
+//         super(name,age);
+//         this.position = position
+//     }
+//
+//     fetchAge(): string {
+//         return `${this.name} is ${this.age} years old`;
+//     }
+// }
+//
+// const teacher1 = new Teacher("Jon",20,"Math")
+// console.log(teacher1)
+// console.log(teacher1.fetchAge())
 
-class Teacher extends Person implements ITeacher{
-    position:string
-    constructor(name:string,age:number,position:string) {
-        super(name,age);
-        this.position = position
-    }
+// Access modifiers  (Public , Private , Protected, Readonly)
+// interface IPerson{
+//     name:string
+//     age?:number
+// }
+// class Person {
+//     name:string
+//     readonly position:string
+//     private age:number
+//     constructor(name:string,age:number,position:string) {
+//         this.name = name
+//         this.age = age
+//         this.position = position
+//     }
+// }
+//
+// const person1 = new Person("Valisher",22,"businessman")
+// person1.age = 20
+// person1.position = "kim"
+// console.log(person1)
 
-    fetchAge(): string {
-        return `${this.name} is ${this.age} years old`;
+//Namespace nomale fazosi
+
+console.log(`%cValisher Botirov`,'color:red;font-size:40px;font-weight:900')
+
+namespace Utils{
+   export function fetch(name:string,color:string){
+        console.log(`%c${name}`,`color:${color}`)
     }
 }
 
-const teacher1 = new Teacher("Jon",20,"Math")
-console.log(teacher1)
-console.log(teacher1.fetchAge())
+Utils.fetch("Valisher","red")
+
+namespace Animals{
+   export abstract class  Animal{
+         #type:string
+        constructor(type:string) {
+            this.#type = type
+        }
+
+        abstract takeConsole():void
+    }
+}
+
+namespace Animals{
+   export class Cat extends Animals.Animal{
+        color:string
+       name:string
+        constructor(name:string,color:string,type:string) {
+            super(type);
+            this.name=name
+            this.color = color
+        }
+
+        takeConsole() {
+            Utils.fetch(`${this.name}`,`${this.color}`)
+        }
+   }
+}
+
+const cat1 = new Animals.Cat("Misha","blue","animal")
+cat1.takeConsole()
+console.log(cat1)
