@@ -1,3 +1,4 @@
+console.log(`%cValisher Botirov`,'color:red;font-size:40px;font-weight:900')
 console.log("Hello TypeScript")
 
 // string
@@ -337,44 +338,64 @@ console.log("Hello TypeScript")
 // console.log(person1)
 
 //Namespace nomale fazosi
+// console.log(`%cValisher Botirov`,'color:red;font-size:40px;font-weight:900')
+// namespace Utils{
+//    export function fetch(name:string,color:string){
+//         console.log(`%c${name}`,`color:${color}`)
+//     }
+// }
+// Utils.fetch("Valisher","red")
+//
+// namespace Animals{
+//    export abstract class  Animal{
+//          #type:string
+//         constructor(type:string) {
+//             this.#type = type
+//         }
+//
+//         abstract takeConsole():void
+//     }
+// }
+// namespace Animals{
+//    export class Cat extends Animals.Animal{
+//         color:string
+//        name:string
+//         constructor(name:string,color:string,type:string) {
+//             super(type);
+//             this.name=name
+//             this.color = color
+//         }
+//
+//         takeConsole() {
+//             Utils.fetch(`${this.name}`,`${this.color}`)
+//         }
+//    }
+// }
+//
+// const cat1 = new Animals.Cat("Misha","blue","animal")
+// cat1.takeConsole()
+// console.log(cat1)
 
-console.log(`%cValisher Botirov`,'color:red;font-size:40px;font-weight:900')
+//Generic types
+type A<T> = T
+type B = A<string>
+let a:A<number> = 20
 
-namespace Utils{
-   export function fetch(name:string,color:string){
-        console.log(`%c${name}`,`color:${color}`)
-    }
+type MyArr<T> = T[]
+
+let arr:MyArr<string|number> = ["sa",2,5,"as"]
+console.log(arr)
+
+// generic type for function
+function echo<T>(x:T):T{
+    return x
 }
 
-Utils.fetch("Valisher","red")
-
-namespace Animals{
-   export abstract class  Animal{
-         #type:string
-        constructor(type:string) {
-            this.#type = type
-        }
-
-        abstract takeConsole():void
-    }
+const echo2 = (x:string):string=>{
+    return x
 }
-
-namespace Animals{
-   export class Cat extends Animals.Animal{
-        color:string
-       name:string
-        constructor(name:string,color:string,type:string) {
-            super(type);
-            this.name=name
-            this.color = color
-        }
-
-        takeConsole() {
-            Utils.fetch(`${this.name}`,`${this.color}`)
-        }
-   }
+const echo3=<T>(x:T):T=>{
+    return x
 }
-
-const cat1 = new Animals.Cat("Misha","blue","animal")
-cat1.takeConsole()
-console.log(cat1)
+console.log(echo3(4))
+console.log(echo("salom"))
